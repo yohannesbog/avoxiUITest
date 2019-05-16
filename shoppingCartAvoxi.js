@@ -80,5 +80,5 @@ describe('Avoxi shoping cart test ', () => {
         });
 
         // close the browser
-        await after(async () => driver.quit());
+        after(async () => driver.quit());
 });
