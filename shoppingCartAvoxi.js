@@ -13,47 +13,49 @@ describe('Avoxi shoping cart test ', () => {
         });
 
         // select it('Should go to the page and select number type '
-        it('Should go to the page and select number type ', async () => {
+    it('Should go to the page and select number type ', async () => {
             driver.navigate().refresh();
          driver.findElement(By.name('numberType')).click();
           await driver.findElement(By.xpath('//*[@id="numberType"]/select/option[2]')).click();
         });
 
-  // select number 
- it('Should go to the page and select number ', async () => {
-    // driver.navigate().refresh();
-     await driver.findElement(By.name('number')).isDisplayed;
-    // await driver.findElement(By.name('number')).click();
-    // await driver.findElement(By.css('[id="number"] > select > option:nth-child(2)')).click();
-});
+         // select number 
+    it('Should go to the page and select number ', async () => {
+            // driver.navigate().refresh();
+            await driver.findElement(By.name('number')).isDisplayed;
+            // await driver.findElement(By.name('number')).click();
+            // await driver.findElement(By.css('[id="number"] > select > option:nth-child(2)')).click();
+        });
 
-// // forwared call to
-it('Should go to the page and select forward call to ', async () => {
- driver.findElement(By.name('userCountry')).click();
- await driver.findElement(By.css('[id="terminatingCountrySelect"] > select > option:nth-child(4)')).click();
-  await driver.findElement(By.name('userNumber')).sendKeys('5712243150');
-        driver.sleep(1000);
-    });
+        // // forwared call to
+    it('Should go to the page and select forward call to ', async () => {
+        driver.findElement(By.name('userCountry')).click();
+        await driver.findElement(By.css('[id="terminatingCountrySelect"] > select > option:nth-child(4)')).click();
+        await driver.findElement(By.name('userNumber')).sendKeys('5712243150');
+                driver.sleep(1000);
+            });
 
     // choose your plan 
-     it('Should go to the page and select plan ', async () => {
-  await driver.findElement(By.xpath('//*[@id="businessStandardButton"]/p')).click();
+    it('Should go to the page and select plan ', async () => {
+         await driver.manage().window().maximize();
+         await driver.executeScript('window.scrollTo(0,500);');
+         await driver.findElement(By.xpath('//*[@id="businessStandardButton"]')).click();
         });
 
         // complete your information '
         it('Should go to the page and complete your information ', async () => {
-
+        await driver.executeScript('window.scrollTo(0,500);');
         await driver.findElement(By.id('firstName')).sendKeys('Yohannes');
-
         await driver.findElement(By.id('lastName')).sendKeys('Bogale');
-
         await driver.findElement(By.id('businessName')).sendKeys('Avoxi');     
         await driver.findElement(By.id('email')).sendKeys('yohann@avoxi.io');
+        await driver.findElement(By.css('[class="_3kZozxGKwcVv7LzuDb4Qeq"]')).click();
 
     });
 
         //step 4 reviwe and place order
-        it('Should go to the page and reviwe and place order ', async () => {
+    it('Should go to the page and reviwe and place order ', async () => {
+        await driver.executeScript('window.scrollTo(1000,20000);');
         await driver.findElement(By.name('billingName')).sendKeys('Avoxi card');
         await driver.findElement(By.name('billingCardNumber')).sendKeys('4111111111111111');
 
@@ -67,16 +69,16 @@ it('Should go to the page and select forward call to ', async () => {
         await driver.findElement(By.name('billingCVC')).sendKeys('324');
     });
 
-//  // accept condition toggle
-it('Should accept condition toggle ', async () => {
-await driver.findElement(By.id('finalCheckBox')).click();
-});
+        //  // accept condition toggle
+        it('Should accept condition toggle ', async () => {
+        await driver.findElement(By.id('finalCheckBox')).click();
+        });
 
-/// submitt order
-it('Should submitt order ', async () => {
-await driver.findElement(By.id('placeOrder')).submit();     
-    });
+        /// submitt order
+        it('Should submitt order ', async () => {
+        await driver.findElement(By.id('placeOrder')).submit();     
+        });
 
-    // close the browser
-    after(async () => driver.quit());
+        // close the browser
+        after(async () => driver.quit());
 });
