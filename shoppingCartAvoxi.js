@@ -8,14 +8,14 @@ describe('Avoxi shoping cart test ', () => {
     it('Should go to the page and select country ', async () => {
         await driver.get('https://shoppingcart-staging.avoxi.io/');
        // Select country 
-         driver.findElement(By.name('country')).click();
+         await driver.findElement(By.name('country')).click();
          await driver.findElement(By.css('[id="originatingCountrySelect"] > select > option:nth-child(2)')).click();
         });
 
         // select it('Should go to the page and select number type '
     it('Should go to the page and select number type ', async () => {
-            driver.navigate().refresh();
-         driver.findElement(By.name('numberType')).click();
+        driver.navigate().refresh();
+          await driver.findElement(By.name('numberType')).click();
           await driver.findElement(By.xpath('//*[@id="numberType"]/select/option[2]')).click();
         });
 
@@ -29,7 +29,7 @@ describe('Avoxi shoping cart test ', () => {
 
         // // forwared call to
     it('Should go to the page and select forward call to ', async () => {
-        driver.findElement(By.name('userCountry')).click();
+        await driver.findElement(By.name('userCountry')).click();
         await driver.findElement(By.css('[id="terminatingCountrySelect"] > select > option:nth-child(4)')).click();
         await driver.findElement(By.name('userNumber')).sendKeys('5712243150');
                 driver.sleep(1000);
@@ -55,18 +55,18 @@ describe('Avoxi shoping cart test ', () => {
 
         //step 4 reviwe and place order
     it('Should go to the page and reviwe and place order ', async () => {
-        await driver.executeScript('window.scrollTo(1000,20000);');
-        await driver.findElement(By.name('billingName')).sendKeys('Avoxi card');
-        await driver.findElement(By.name('billingCardNumber')).sendKeys('4111111111111111');
+        // await driver.executeScript('window.scrollTo(0,20000);');
+         await driver.findElement(By.css('[data-testid="input-name"]')).sendKeys('Avoxi card');
+        await driver.findElement(By.css('[data-testid="input-card"]')).sendKeys('4111111111111111');
 
         // billing exp month
-        await driver.findElement(By.name('billingExpMon')).click();
+        await driver.findElement(By.css('data-testid="input-expDate"]')).click();
         await driver.findElement(By.css('[id="bilingExpMon"] > option:nth-child(3)')).click();
 
         // biling exp year
         await driver.findElement(By.name('billingExpYear')).click();
-        await driver.findElement(By.css('[id="billingExpYear"] > option:nth-child(2)')).click();
-        await driver.findElement(By.name('billingCVC')).sendKeys('324');
+        await driver.findElement(By.css('[id="billingExpYear"]')).click();
+        await driver.findElement(By.css('billingCVC')).sendKeys('324');
     });
 
         //  // accept condition toggle
@@ -80,5 +80,5 @@ describe('Avoxi shoping cart test ', () => {
         });
 
         // close the browser
-        after(async () => driver.quit());
+        await after(async () => driver.quit());
 });
